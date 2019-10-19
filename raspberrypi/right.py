@@ -10,10 +10,6 @@ mode=GPIO.getmode()
 print " mode ="+str(mode)
 GPIO.cleanup()
 
-# Define GPIO signals to use
-# Physical pins 11,15,16,18
-# GPIO17,GPIO22,GPIO23,GPIO24
-
 StepPinForward=18
 StepPinBackward=16
 
@@ -38,14 +34,28 @@ GPIO.setup(StepPinBackward3, GPIO.OUT)
 GPIO.setup(StepPinForward4, GPIO.OUT)
 GPIO.setup(StepPinBackward4, GPIO.OUT)
 
-def forward():
-    GPIO.output(StepPinForward, GPIO.HIGH)
-    GPIO.output(StepPinForward2, GPIO.HIGH)
-    GPIO.output(StepPinForward3, GPIO.HIGH)
-    GPIO.output(StepPinForward4, GPIO.HIGH)
-    print "forwarding running  motor "
+def left(x):
+    fast= 100 #input("How fast? (20-100)")
+    slow= 30 #input("How fast? (20-100)")
+    my_pwm=GPIO.PWM(StepPinForward,100)
+    my_pwm.start(0)
+    my_pwm.ChangeDutyCycle(fast)
+    
+    my_pwm2=GPIO.PWM(StepPinForward2,100)
+    my_pwm2.start(0)
+    my_pwm2.ChangeDutyCycle(slow)
+    
+    my_pwm3=GPIO.PWM(StepPinForward3,100)
+    my_pwm3.start(0)
+    my_pwm3.ChangeDutyCycle(fast)
+    
+    my_pwm4=GPIO.PWM(StepPinForward4,100)
+    my_pwm4.start(0)
+    my_pwm4.ChangeDutyCycle(slow)
+    
+    
+    time.sleep(x)
+    my_pwm.stop()
+    GPIO.cleanup()
 
-print "forward motor "
-forward()
-
-#GPIO.cleanup()
+left(3)

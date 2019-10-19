@@ -37,15 +37,16 @@ GPIO.setup(StepPinForward3, GPIO.OUT)
 GPIO.setup(StepPinBackward3, GPIO.OUT)
 GPIO.setup(StepPinForward4, GPIO.OUT)
 GPIO.setup(StepPinBackward4, GPIO.OUT)
-
-def forward():
-    GPIO.output(StepPinForward, GPIO.HIGH)
-    GPIO.output(StepPinForward2, GPIO.HIGH)
-    GPIO.output(StepPinForward3, GPIO.HIGH)
-    GPIO.output(StepPinForward4, GPIO.HIGH)
-    print "forwarding running  motor "
-
-print "forward motor "
-forward()
-
-#GPIO.cleanup()
+GPIO.output(StepPinForward, GPIO.LOW)
+GPIO.output(StepPinForward2, GPIO.LOW)
+GPIO.output(StepPinForward3, GPIO.LOW)
+GPIO.output(StepPinForward4, GPIO.LOW)
+    
+GPIO.output(StepPinBackward, GPIO.LOW)
+GPIO.output(StepPinBackward2, GPIO.LOW)
+GPIO.output(StepPinBackward3, GPIO.LOW)
+GPIO.output(StepPinBackward4, GPIO.LOW)
+    
+    
+print "Stopping motor"
+GPIO.cleanup()
